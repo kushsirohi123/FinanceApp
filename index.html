@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="money.png">
+<title>Fiance App</title>
+</head>
+<body>
+<header>
+    <div class="head">
+            <h1 class="header"><img class="header" src="money.png" width="43" height="43">Kush Siroshi</h1>
+        <hr width="400" align="left">
+    </div>
+</header>
+<div style="padding: 50px"></div>
+<div style="display:flex;">
+    <div class="main2" style="flex: 1;">
+        <h1>What is Fiance App</h1>
+        <p>example example example example example example</p>
+    </div>
+    <div class="main2" style="flex: 1;">
+        <h1>How to use it</h1>
+        <p>example example example example example example</p>
+    </div>
+</div>
+<div style="padding: 100px;"></div>
+<div style="display: flex">
+    <div class="main3">
+        <h1>Fiance Quiz</h1>
+        <div style="color: white;">
+        <p>Question 1: Do you have a stable income?</p>
+        <button class="answer" data-points="10">Yes</button>
+        <button class="answer" data-points="0">No</button>
+        <p>Question 2: What is your credit score?</p>
+        <button class="answer" data-points="20">Excellent (800+)</button>
+        <button class="answer" data-points="10">Good (700-799)</button>
+        <button class="answer" data-points="5">Fair (600-699)</button>
+        <button class="answer" data-points="0">Poor (less than 600) </button>
+        <p>Question 3: How much debt do you currently have?</p>
+        <button class="answer" data-points="10">Less than 30% of income</button>
+        <button class="answer" data-points="5">Between 30-50% of income</button>
+        <button class="answer" data-points="0">More than 50% of income</button>
+        <p>Question 4: What is the estimated value of the property you want to buy?</p>
+        <button class="answer" data-points="20">$500,000 or more</button>
+        <button class="answer" data-points="10">$300,000-$499,999</button>
+        <button class="answer" data-points="5">$100,000-$299,999</button>
+        <button class="answer" data-points="0">Less than $100,000</button>
+        <p>Question 5: How much of a down payment can you afford?</p>
+        <button class="answer" data-points="20">20% or more</button>
+        <button class="answer" data-points="10">10%-19%</button>
+        <button class="answer" data-points="5">5%-9%</button>
+        <button class="answer" data-points="0">Less than 5%</button>
+        <p><button id="submit-btn" class="answer">Submit</button></p>
+        </div>
+    </div>
+</div>
+<div style="display: flex;">
+<div class="main3" id="re" style="height: 75px; opacity: 0;">
+    <h1><div id="resultQuiz"></div></h1>
+</div>
+</div>
+<div style="padding: 100px;"></div>
+<div style="display: flex">
+    <div class="main">
+        <h1>Loan Calculator</h1>
+        <div style="padding: 15px;">
+            <input type="number" id="loanA" class="loan" placeholder="Input the Loan Amount">
+        </div>
+        <div >
+            <input type="number" class="loaner" id="time" placeholder="Loan Length (in months)">
+            <input type="number" class="loaner" id="rate" placeholder="Intrest Rate (in %)">
+            <button class="loaner" onclick="CALC()">Run</button>
+        </div>
+    </div>
+</div>
+<div style="padding: 10px;"></div>
+<div style="display: flex">
+    <div class="mainA" id="CALC" style="opacity: 0;">
+        <h1>Your Monthly Payment</h1>
+        <h1><div id="result"></div></h1>
+    </div>
+</div>
+<script>
+// LOAN CALCULATOR SCRIPT
+// VARIBLES
+var RESULTDIV = document.getElementById("CALC"); 
+var LoanA = document.getElementById("loanA");
+var time = document.getElementById("time");
+var rate = document.getElementById("rate");
+var Result = document.getElementById("result");
+
+// CALC FUNCTION
+function CALC() {
+    // GETS THE VALUES FROM THE VARS ABOVE AND MAKES A NEW UPDATED ONES
+    var loanAmount = parseFloat(LoanA.value);
+    // CONVERTS YEARS TO MONTHS
+    var loanTerm = parseFloat(time.value) * 12;
+    // DIVIDES TO GET THE REAL NUMBER 5% = 0.05
+    var interestRate = (parseFloat(rate.value) / 100) / 12;
+    var monthlyPayment = ((loanAmount * interestRate * Math.pow((1 + interestRate), loanTerm)) / (Math.pow((1 + interestRate), loanTerm) - 1)).toFixed(2);
+
+
+    Result.innerHTML = "$" + monthlyPayment;
+    RESULTDIV.style.opacity = 1;
+}
+
+
+
+
+
+const answers = document.querySelectorAll(".answer");
+const submitBtn = document.querySelector("#submit-btn");
+const result = document.querySelector("#resultQuiz");
+const hide = document.getElementById("re");
+
+let totalPoints = 0;
+
+answers.forEach(answer => {
+  answer.addEventListener("click", () => {
+    const points = parseInt(answer.getAttribute("data-points"));
+    totalPoints += points;
+    answer.disabled = true;
+  });
+});
+
+submitBtn.addEventListener("click", () => {
+  let priceRange;
+
+  if (totalPoints >= 50) {
+    priceRange = "$500,000 or more";
+  } else if (totalPoints >= 30) {
+    priceRange = "$300,000-$499,999";
+  } else if (totalPoints >= 20) {
+    priceRange = "$100,000-$299,999";
+  } else {
+    priceRange = "Less than $100,000";
+  }
+
+  result.innerHTML = `Based on your answers, your price range for a home loan is: ${priceRange}`;
+  hide.style.opacity = 1;
+});
+
+
+
+
+</script>
+<div style="padding: 50px;"></div>
+<footer>
+<!-- CREDIT FOR THE ICON IMAGE-->
+<p>Icon by <a href="https://adioma.com">Adioma</a></p>
+</footer>
+</body>
+</html>
