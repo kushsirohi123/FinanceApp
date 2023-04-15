@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="money.png">
-<title>Fiance App</title>
+<title>Finance App</title>
 </head>
 <body>
 <header>
@@ -126,19 +126,19 @@ answers.forEach(answer => {
     });
   });
   
-const pr = ["Over 500k", "$300,000-$499,999", "$100,000-$299,999", "Less than $100,000"]
+const pb = ["Over 500k", "$300,000-$499,999", "$100,000-$299,999", "Less than $100,000"]
 
 submitBtn.addEventListener("click", () => {
   let priceRange;
 
   if (totalPoints >= 50) {
-    priceRange = pr[0];
+    priceRange = pb[0];
   } else if (totalPoints >= 30) {
-    priceRange = pr[1];
+    priceRange = pb[1];
   } else if (totalPoints >= 20) {
-    priceRange = pr[2];
+    priceRange = pb[2];
   } else {
-    priceRange = pr[3];
+    priceRange = pb[3];
   }
 
 
