@@ -12,18 +12,18 @@
 <header>
     <div class="head">
             <h1 class="header"><img class="header" src="money.png" width="43" height="43">Kush Sirohi</h1>
-        <hr width="400" align="left">
+        <hr width="400" align ="left">
     </div>
 </header>
 <div style="padding: 50px"></div>
 <div style="display:flex;">
     <div class="main2" style="flex: 1;">
-        <h1>What is Fiance App</h1>
-        <p>example example example example example example</p>
+        <h1>What is Finance App</h1>
+        <p>Fiance app is a app where future home buyers can figure out their monthly mortgage and also take a short quiz to see their financial state.</p>
     </div>
     <div class="main2" style="flex: 1;">
         <h1>How to use it</h1>
-        <p>example example example example example example</p>
+        <p>For the quiz, simply click the correct answer for you for all 5 questions and submit. You would get your results instantly. With those results, you can go over the the finance calculator and type in the amount you want to loan, the interest rate you are recieving on the home, and the length of the loan in years. Typically, mortgages last for 10,15, or 30 years. </p>
     </div>
 </div>
 <div style="padding: 100px;"></div>
@@ -126,18 +126,22 @@ answers.forEach(answer => {
     });
   });
   
+const pr = ["Over 500k", "$300,000-$499,999", "$100,000-$299,999", "Less than $100,000"]
+
 submitBtn.addEventListener("click", () => {
   let priceRange;
 
   if (totalPoints >= 50) {
-    priceRange = "$500,000 or more";
+    priceRange = pr[0];
   } else if (totalPoints >= 30) {
-    priceRange = "$300,000-$499,999";
+    priceRange = pr[1];
   } else if (totalPoints >= 20) {
-    priceRange = "$100,000-$299,999";
+    priceRange = pr[2];
   } else {
-    priceRange = "Less than $100,000";
+    priceRange = pr[3];
   }
+
+
 
   console.log(totalPoints);
   result.innerHTML = `Based on your answers, your price range for a home loan is: ${priceRange}`;
