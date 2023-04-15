@@ -11,7 +11,7 @@
 <body>
 <header>
     <div class="head">
-            <h1 class="header"><img class="header" src="money.png" width="43" height="43">Kush Siroshi</h1>
+            <h1 class="header"><img class="header" src="money.png" width="43" height="43">Kush Sirohi</h1>
         <hr width="400" align="left">
     </div>
 </header>
@@ -70,7 +70,7 @@
             <input type="number" id="loanA" class="loan" placeholder="Input the Loan Amount">
         </div>
         <div >
-            <input type="number" class="loaner" id="time" placeholder="Loan Length (in months)">
+            <input type="number" class="loaner" id="time" placeholder="Loan Length (in years)">
             <input type="number" class="loaner" id="rate" placeholder="Intrest Rate (in %)">
             <button class="loaner" onclick="CALC()">Run</button>
         </div>
@@ -107,10 +107,6 @@ function CALC() {
     RESULTDIV.style.opacity = 1;
 }
 
-
-
-
-
 const answers = document.querySelectorAll(".answer");
 const submitBtn = document.querySelector("#submit-btn");
 const result = document.querySelector("#resultQuiz");
@@ -118,14 +114,18 @@ const hide = document.getElementById("re");
 
 let totalPoints = 0;
 
+// Iteration
+// Iteration
 answers.forEach(answer => {
-  answer.addEventListener("click", () => {
-    const points = parseInt(answer.getAttribute("data-points"));
-    totalPoints += points;
-    answer.disabled = true;
+    answer.addEventListener("click", () => {
+      const points = parseInt(answer.getAttribute("data-points"));
+      if (!isNaN(points)) {
+        totalPoints += points;
+        answer.disabled = true;
+      }
+    });
   });
-});
-
+  
 submitBtn.addEventListener("click", () => {
   let priceRange;
 
@@ -139,18 +139,16 @@ submitBtn.addEventListener("click", () => {
     priceRange = "Less than $100,000";
   }
 
+  console.log(totalPoints);
   result.innerHTML = `Based on your answers, your price range for a home loan is: ${priceRange}`;
   hide.style.opacity = 1;
 });
-
-
-
 
 </script>
 <div style="padding: 50px;"></div>
 <footer>
 <!-- CREDIT FOR THE ICON IMAGE-->
-<p>Icon by <a href="https://adioma.com">Adioma</a></p>
+<p style="margin-left: 15px;">Icon by <a href="https://adioma.com">Adioma</a></p>
 </footer>
 </body>
 </html>

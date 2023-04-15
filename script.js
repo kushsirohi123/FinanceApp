@@ -1,6 +1,5 @@
 // LOAN CALCULATOR SCRIPT
 // VARIBLES    
-
 var LoanA = document.getElementById("loanA");
 var time = document.getElementById("time");
 var rate = document.getElementById("rate");
